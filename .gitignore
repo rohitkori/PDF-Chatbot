@@ -1,0 +1,7 @@
+uploads
+vectorstore_db
+venv
+__pycache__
+.env
+*.pdf
+test.py
