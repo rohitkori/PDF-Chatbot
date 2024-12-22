@@ -1,4 +1,5 @@
 from fastapi import FastAPI, File, UploadFile
+from fastapi.middleware.cors import CORSMiddleware
 from langchain_community.document_loaders import PyPDFLoader
 from langchain_groq import ChatGroq
 from langchain_core.embeddings import DeterministicFakeEmbedding
@@ -14,6 +15,16 @@ import os
 load_dotenv()
 
 app = FastAPI()
+
+origins = ["*"]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 if not os.path.exists('uploads'):
     os.mkdir('uploads')
